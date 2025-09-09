@@ -1,0 +1,58 @@
+<div class="modal-wrapper" *ngIf="show">
+ <!-- the $event.stopPropagation prevents the onClose() from running when its clicked -->
+  <div class="modal-content"> 
+    <div class="header">
+      <span>Action Plan for Incident Report: {{data}}</span>
+      <button type="button" (click)="onClose()">
+         <mat-icon style="font-size: 20px;">close</mat-icon>
+      </button>
+    </div>
+    <form class="form-content" [formGroup]="myForm" (click)="onSubmit($event)">
+      <div class="form-field-text-area">
+        <label>Action Description</label>
+        <textarea rows="4" cols="50" id="text-area" formControlName="actionDescription"></textarea>
+      </div>
+      <div class="form-field">
+        <label>Team In Charge</label>
+        <select name="myDropdown" id="dropdown" formControlName="personInCharge">
+            <option value="1">Team A</option>
+            <option value="2">Team B</option>
+            <option value="3">Team C</option>
+            <option value="4">Team D</option>
+            <option value="5">Team E</option>
+            <option value="6">Team F</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Priority</label>
+        <select name="myDropdown" id="dropdown" formControlName="priority">
+            <option value="10">Low</option>
+            <option value="20">Moderate</option>
+            <option value="30">High</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Action Types</label>
+        <select name="myDropdown" id="dropdown" formControlName="actionTypes">
+            <option value="10">Corrective Action</option>
+            <option value="20">Preventive Action</option>
+            <option value="30">Mitigation Action</option>
+            <option value="40">Containment Action</option>
+            <option value="50">Monitoring Action</option>
+            <option value="60">Administrative Action</option>
+        </select>
+      </div>
+     <div class="form-field">
+        <label>Target Date</label>
+        <input 
+            type="date" 
+            id="targetDate" 
+            name="targetDate" 
+            class="form-control"
+            formControlName="targetDate"
+            required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

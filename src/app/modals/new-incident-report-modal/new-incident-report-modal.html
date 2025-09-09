@@ -1,0 +1,37 @@
+<div class="modal-wrapper" *ngIf="show">
+ <!-- the $event.stopPropagation prevents the onClose() from running when its clicked -->
+  <div class="modal-content" (click)="$event.stopPropagation()"> 
+    <div class="header">
+      <span>Create Incident Report</span>
+    </div>
+    <form class="form-content" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
+      <div class="form-field">
+        <label>Title</label>
+        <input type="text" formControlName="title">
+      </div> 
+      <div class="form-field">
+        <label>Accident Type</label>
+        <select name="myDropdown" id="accident-type" formControlName="accidentTypeId">
+            <option value="1">Workplace Safety Incidents</option>
+            <option value="2">Health and Medical Incidents</option>
+            <option value="3">Environmental and Facility Hazards</option>
+            <option value="4">Security Related Incidents</option>
+            <option value="5">Vehicle and Traffic Accidents</option>
+            <option value="6">Near Miss/Unsafe Acts</option>
+        </select>
+      </div> 
+      <div id="description" class="form-field">
+        <label>Description</label>
+        <textarea rows="4" cols="50" formControlName="description"></textarea>
+      </div> 
+      <div class="form-field">
+        <label>Location</label>
+        <input type="text" formControlName="location">
+      </div> 
+      <div id="footer">
+        <button id="cancel-btn" type="button" (click)="onClose()">Cancel</button>
+        <button id="submit-btn" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

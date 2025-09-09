@@ -1,0 +1,219 @@
+.main-wrapper {
+  height: 100vh;
+  background: rgb(232, 232, 232);
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  height: 7%;
+  background: rgb(31, 31, 31);
+  display: flex;
+  justify-content: space-between; /* pushes children to opposite ends */
+  border: 1px solid blue;
+}
+
+.title-section {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-section span {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.user-menu {
+  height: 100%;
+  width: 22%;
+  background: rgb(255, 152, 152); 
+  position: relative;
+}
+
+#dropdown-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5%;
+}
+
+#dropdown-username {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.user-menu-toggle  {
+  height: 100%;
+  background: rgb(31, 31, 31);
+  width: 100%;
+  border: none;
+}
+
+
+.user-menu-dropdown {
+  position: absolute;
+  height: auto; /* its height will be dependent on its content */
+  background: rgb(255, 255, 255);  
+  border-radius: 2%;
+  z-index: 1000;
+  width: 100%;
+  top: 100%; /* This puts the top edge of the drop down container exactly 100% below from the top edge of the parent container, */
+             /* if the parents container height is 50px, the child container top edge with top: 100%, position: absolute will be 50px below from the top edge of the parents container */
+}
+
+.user-menu-dropdown.hide {
+  display: none;
+}
+
+/* By default, anchor tag is display: inline, meaning it takes as much as width of its content. so to make the width its full width, make it display: block */
+.user-menu-dropdown a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5.5vh;
+  border-top: 0.5px solid rgb(216, 216, 216);
+  border-bottom: 0.5px solid rgb(216, 216, 216);
+}
+
+.user-menu-dropdown a:hover {
+  background:  rgb(226, 226, 226);  
+  cursor: pointer;
+}
+
+.logout-btn {
+ background: rgb(255, 255, 255);
+ border: none; 
+ height: 6vh;
+ width: 100%;
+ border-top: 0.5px solid rgb(216, 216, 216);
+ border-bottom: 0.5px solid rgb(216, 216, 216);
+}
+
+.logout-btn:hover {
+  cursor: pointer; 
+  background:  rgb(226, 226, 226);  
+}
+
+.main-content {
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  gap: 2%;
+  min-height: 0;
+}
+
+.top-content {
+  height: 11%;
+  display: flex;
+  gap: 1%;
+}
+
+.top-content-child {
+  background: rgb(255, 255, 255);
+  height: 100%;
+  width: 25%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-content-btn {
+  border: 1px solid rgb(255, 255, 255);
+  height: 100%;
+  width: 30%;
+  cursor: pointer;
+  border-radius: 10px;
+  background: rgb(76, 91, 255);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  color: white;
+  font-size: 1rem;
+}
+
+
+.middle-content {
+  height: 42%;
+  background: rgb(232, 232, 232);
+  display: flex;
+  gap: 1%;
+}
+
+.chart-1 {
+  padding: 0.5%;
+  height: 100%;
+  width: 50%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chart-1 h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.chart-1 canvas {
+  width: 80% !important;
+  height: 100% !important;
+}
+
+.chart-2 {
+  position: relative;
+  height: 100%;
+  width: 50%; 
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.chart-2 h3 {
+  position: absolute;
+  left: 60%;
+  top: 15%;
+  margin-top: 0;
+  text-align: center;
+}
+
+.chart-2 canvas {
+  width: 100% !important;  /* fill container */
+  height: 100% !important; /* fill container */
+}
+
+
+.last-content {
+  flex: 1;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.ag-theme-alpine {
+  width: 100%;
+  height: 100%; /* fill chart-info container */
+}
+
+.ag-theme-alpine .ag-header {
+   background-color: #f1f1f1;
+   border-bottom: 2px solid #007BFF;
+   color: #333;
+   font-weight: bold;
+}
+
+.ag-theme-alpine .ag-row {
+  border-bottom: 1px solid #ddd;
+}

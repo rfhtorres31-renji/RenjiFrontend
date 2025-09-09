@@ -1,0 +1,103 @@
+.modal-wrapper {
+  position: fixed; /*This positions the modal-wrapper div relative to the viewport*/
+  height: 100vh;
+  width: 100vw; 
+  left: 0; /* This positions the left edge of the .modal-wrapper div to exactly align on the left edge of the viewport, provided that it its position as fixed */
+  top:0; /* This positions the left edge of the .modal-wrapper div to exactly align on the top edge of the viewport, provided that it its position as fixed */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensures that this wrapper is on top of everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  height: 90%;
+  width: 40%;
+  background: white;
+  padding: 1.2%;
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+  border-radius: 2%;
+}
+
+.header {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: relative;
+}
+
+.header span {
+  font-size: 1.5rem;
+}
+
+.header button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 80%;
+  background: none;
+  border: none;
+  padding: 2%;
+  position: absolute;
+  left: 90%;
+}
+
+.header button:hover {
+  cursor: pointer;
+}
+
+
+.form-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
+
+.form-field-text-area {
+  height: 22%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-size: 1.1rem;
+}
+
+#text-area {
+  padding: 2%;
+  height: 100%;
+}
+
+.form-field {
+  height: 13%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field input
+ {
+  height: 100%;
+  width: 100%;
+}
+
+#dropdown {
+  height: 100%;
+  width: 100%;
+}
+
+form button {
+  margin-top: 2%;
+  background: rgb(202, 202, 202);
+  border: none;
+  height: 8%;
+  border-radius: 2px;
+}

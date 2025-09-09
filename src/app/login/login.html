@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="logo-container">
+      <img ngSrc="logo.png" width="300" height="200" alt="Logo" class="logo-img" />
+   </div>
+   <div class="form-container">
+      <form class="form-content" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <span class="form-error" *ngIf="isErrorVisible">{{errorMessage}}</span>
+        <div class="form-field">
+          <input type="email" formControlName="email" placeholder="Email">
+            <span class="email-error" *ngIf="myForm.get('email')?.value && myForm.get('email')?.invalid">
+               Invalid email address
+            </span>
+        </div>
+        <div class="form-field">
+          <input type="password" formControlName="password"  placeholder="New password">
+        </div>
+        <button>Log In</button>
+      </form>
+      <div class="form-detail">
+         <h3>Incident and Reporting System:</h3>
+         <div class="detail-content">
+            <div class="detail-item">
+               <mat-icon>check_circle_outline</mat-icon>
+               <span>Action Planning</span>
+            </div>
+            <div class="detail-item">
+               <mat-icon>check_circle_outline</mat-icon>
+               <span>Incident Reporting</span>
+            </div>
+            <div class="detail-item">
+               <mat-icon>check_circle_outline</mat-icon>
+               <span>Incident Trends and Graphs</span>
+            </div>
+         </div>
+         <div class="remember-me">
+            <input type="checkbox" id="rememberMe" [(ngModel)]="rememberMe"/>
+            <label for="rememberMe">Remember me</label>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="reg-container">
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+    <h2>Renji</h2>
+    <form class="form-container" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+       <h3>Create a new account</h3>
+       <div class="form-content">
+          <div class="form-field">
+             <input type="text" formControlName="firstname" placeholder="Firstname">
+          </div>
+          <div class="form-field">
+             <input type="text" formControlName="lastname" placeholder="Lastname">
+          </div>
+          <div class="form-field">
+             <input type="email" formControlName="email" placeholder="Email">
+          </div>
+          <div class="form-field">
+             <input type="password" formControlName="password" placeholder="New password">
+          </div>
+          <div class="form-field">
+            <select id="departmentOptions" name="myDropdown" class="deparment-dropdown" formControlName="departmentId">
+               <option value="">Select Department</option>
+               <option value="1">IT</option>
+               <option value="2">HR</option>
+               <option value="3">Finance</option>
+               <option value="4">Operations</option>
+               <option value="5">Safety & Compliance</option>
+            </select>
+          </div>
+          <button>Sign up</button>
+       </div>
+    </form>
+</div>

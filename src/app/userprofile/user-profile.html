@@ -1,0 +1,55 @@
+<div class="main-wrapper">
+  <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+  <app-nav-menu [userFullName]="userFullName"></app-nav-menu>
+  <div class="main-content">
+    <div class="top-content">
+       <div class="top-content-child">
+          <span>{{noOfOpenReports}}</span>
+          <span>Open</span>
+       </div>
+       <div class="top-content-child">
+          <span>{{noOfInProgressReports}}</span>
+          <span>In Progress</span>
+       </div>
+       <div class="top-content-child">
+          <span>{{noOfResolvedReports}}</span>
+          <span>Resolved</span>
+       </div>
+       <button class="top-content-btn" (click)="openModal()">New Incident</button>
+    </div>
+    <div class="middle-content">
+      <div class="chart-1" *ngIf="isBarChart">
+          <h3>Number of Accidents Per Type</h3>
+         <canvas
+               baseChart
+               [data]="barChartData"
+               [options]="barChartOptions"
+               [type]="'bar'">
+         </canvas>
+      </div>
+      <div class="chart-2">
+          <h3>% No of Accident Types </h3>
+           <canvas baseChart
+               [data]="pieChartData"
+               [options]="pieChartOptions"
+               [type]="pieChartType">
+         </canvas>
+      </div>
+    </div>
+    <div class="last-content">
+       <ag-grid-angular
+            style="width: 100%; height:100%;"
+            class="ag-theme-alpine"
+            [rowData]="rowData"
+            [columnDefs]="columnDefs"
+            [defaultColDef]="defaultColDef"
+            [components]="components"
+            [context]="{ componentParent: this }"
+            [animateRows]="true"
+            [rowSelection]="'single'">
+       </ag-grid-angular>
+    </div>
+  </div>
+</div>
+<app-new-incident-report-modal [show]="showModal" (close)="closeModal()" (formSubmit)="reportSubmit($event)"></app-new-incident-report-modal>
+<app-new-action-plan-modal [show]="showModal2" [data]="actionID" (close)="closeModal2()" (formSubmit)="actionSubmit($event)"></app-new-action-plan-modal>

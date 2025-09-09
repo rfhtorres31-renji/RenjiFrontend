@@ -1,0 +1,49 @@
+ 
+        <div class="top-bar">
+            <!-- When the angular loads, it renders HTML + CSS first before anything -->
+            <div class="side-bar hide" [class.hide]="isSideMenuOpen">
+               <div class="side-bar-content">
+                    <div class="menu-item">
+                        <button type="button" (click)="goToDashboard()">
+                            <mat-icon>dashboard</mat-icon>
+                            <span>Incident Reports Dashboard</span>
+                        </button>
+                    </div>
+                    <div class="menu-item">
+                        <button type="button" (click)="goToActionPlan()">
+                            <mat-icon>assignment</mat-icon>
+                            <span>Action Plan List</span>
+                        </button>
+                    </div>
+                    <div class="menu-item">
+                        <button type="button" (click)="goToActionPlanDashboard()">
+                            <mat-icon>dashboard</mat-icon>
+                            <span>Action Plan Dashboard</span>
+                        </button>
+                    </div>
+               </div>
+            </div>
+            <div class="title-section">
+              <button mat-icon-button class="my-hamburger-btn" (click)="toggleSideMenu()">
+                 <mat-icon>menu</mat-icon>
+              </button>
+              <span>Incident and Safety Reporting System</span>
+            </div>
+            <div class="user-menu">
+            <button class="user-menu-toggle" type="submit" (click)="toggleMenu()">
+                <span id="dropdown-icon">
+                    <mat-icon style="color: white;">person</mat-icon>
+                    <span id="dropdown-username">{{userFullName}}</span>
+                    <mat-icon style="color: white;">arrow_drop_down</mat-icon>
+                </span>
+            </button>
+            <div class="user-menu-dropdown"  [class.hide]="isMenuOpen">
+                <a>Messages</a>
+                <a>Account Settings</a>
+                <button class="logout-btn" (click)="logout()">Logout</button>
+            </div>
+            </div>
+        </div>
+
+  
+  

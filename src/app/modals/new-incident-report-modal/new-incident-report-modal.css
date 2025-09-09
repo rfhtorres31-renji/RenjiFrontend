@@ -1,0 +1,91 @@
+.modal-wrapper {
+  position: fixed; /*This positions the modal-wrapper div relative to the viewport*/
+  height: 100vh;
+  width: 100vw; 
+  left: 0; /* This positions the left edge of the .modal-wrapper div to exactly align on the left edge of the viewport, provided that it its position as fixed */
+  top:0; /* This positions the left edge of the .modal-wrapper div to exactly align on the top edge of the viewport, provided that it its position as fixed */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensures that this wrapper is on top of everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  height: 85%;
+  width: 40%;
+  background: white;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 7%;
+  border-radius: 2%;
+}
+
+
+.header span {
+  font-size: 1.5rem;
+}
+
+.form-content {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field {
+  height: 21%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field input,
+.form-field textarea  {
+  height: 100%;
+  padding-left: 2%;
+  margin-top: 1%;
+}
+
+#accident-type {
+  height: 100%;
+  padding-left: 2%;
+  margin-top: 1%;  
+}
+
+
+.form-field textarea {
+  padding: 2%;
+}
+
+
+#description {
+  height: 50%;
+}
+
+#footer {
+  height: 15%;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+#footer button {
+  border: 1px solid red;
+  width: 20%;
+}
+
+#cancel-btn {
+  background: rgb(240, 240, 240);
+  border-radius: 5px;
+  border: none !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#submit-btn {
+  background: rgb(29, 67, 255);
+  border-radius: 5px;
+  color: white;
+  border: none !important;
+}

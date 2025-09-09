@@ -1,0 +1,94 @@
+.main-wrapper {
+  height: 100vh;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 1%;
+}
+
+.dashboard-1 {
+  height: 55%;
+  width: 100%;
+  display: flex;
+  gap: 1%;
+}
+
+.dashboard-1-1 {
+  height: 100%;
+  width: 65%;
+  display: flex; 
+  flex-direction: column;
+  gap: 2%;
+}
+
+.kpi {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  gap: 0.7%;
+}
+
+.kpi-item {
+  height: 100%;
+  width: 33%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.kpi-value {
+  height: 60%;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+}
+
+.kpi-title {
+  height: 40%;
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bar-chart {
+  width: 100%;
+  height: 70%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  border-radius: 10px;
+}
+
+.dashboard-1-2 {
+  height: 100%;
+  width: 35%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+.dashboard-1-2 h3 {
+   top: 10%;
+   left: 40%;
+   position: absolute;
+}
+
+.dashboard-2 {
+  height: 45%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  width: 100%;
+}
+
