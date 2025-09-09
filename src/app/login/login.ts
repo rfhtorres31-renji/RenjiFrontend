@@ -51,17 +51,19 @@ export class Login implements OnInit {
               // All 200 status codes are catched by next handler
            next: (response) => {
                 if (response.status == 200){
-                   console.log("Login Successful");
+                    
                     const token: string = response.body.details.token; 
                     const userFullName: string = response.body.details.name;
                     const userID: string = response.body.details.userID;
+
                     localStorage.setItem('token', token);
 
                     this.userService.setUserName(userFullName);
                     this.userService.setUserId(userID);
 
-                    this.router.navigate(['/dashboard']);
                     this.spinner.hide();
+                    this.router.navigate(['/dashboard']);
+                    
                  }
               },
               // Error status codes (400's 500's) are catched by the error handler
