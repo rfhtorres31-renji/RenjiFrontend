@@ -63,6 +63,7 @@ export class UserProfile implements OnInit {
       { field: 'Type', headerName: 'Type', sortable: true, filter: true },
       { field: 'Location', headerName: 'Location', sortable: true, filter: true },
       { field: 'ReportedDate', headerName: 'Reported Date', sortable: true, filter: true },
+      { field: 'ReportedBy', headerName: 'Reported By', sortable: true, filter: true },
       { field: 'Status', headerName: 'Status', sortable: true, filter: true },
       {headerName: 'Action', cellRenderer: 'buttonCellRenderer'}
    ]

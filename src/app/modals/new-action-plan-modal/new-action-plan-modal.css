@@ -1,103 +1,129 @@
 .modal-wrapper {
-  position: fixed; /*This positions the modal-wrapper div relative to the viewport*/
+  position: fixed;
   height: 100vh;
   width: 100vw; 
-  left: 0; /* This positions the left edge of the .modal-wrapper div to exactly align on the left edge of the viewport, provided that it its position as fixed */
-  top:0; /* This positions the left edge of the .modal-wrapper div to exactly align on the top edge of the viewport, provided that it its position as fixed */
+  left: 0;
+  top: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1000; /* Ensures that this wrapper is on top of everything */
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
+  overflow-y: auto;      
+  scrollbar-gutter: stable;  
   height: 90%;
-  width: 40%;
-  background: white;
-  padding: 1.2%;
+  width: 45%;
+  background: #fff;
+  padding: 2%;
   display: flex;
   flex-direction: column;
-  gap: 3%;
-  border-radius: 2%;
+  gap: 5%;
+  border-radius: 8px;
+  animation: fadeInScale 0.25s ease-in-out;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); 
+  margin-top: 3%;
 }
 
 .header {
- width: 100%;
- display: flex;
- align-items: center;
- justify-content: center;
- position: relative;
+  border-bottom: 1px solid #ddd;
+  height: 12%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header span {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600; 
+  color: #1976D2;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .header button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  height: 80%;
-  background: none;
   border: none;
-  padding: 2%;
-  position: absolute;
-  left: 90%;
-}
-
-.header button:hover {
+  background: transparent;
   cursor: pointer;
 }
 
-
 .form-content {
-  height: 100%;
-  width: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3%;
+  gap: 15px;
 }
 
+.form-field,
 .form-field-text-area {
-  height: 22%;
-  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.form-field label {
-  font-size: 1.1rem;
+.form-field label,
+.form-field-text-area label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 
-#text-area {
-  padding: 2%;
-  height: 100%;
+input, select, textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
 }
 
-.form-field {
-  height: 13%;
-  width: 100%;
+textarea {
+  resize: vertical;
+  height:  100%;
+}
+
+.footer {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: auto;
 }
 
-.form-field input
- {
-  height: 100%;
-  width: 100%;
-}
-
-#dropdown {
-  height: 100%;
-  width: 100%;
-}
-
-form button {
-  margin-top: 2%;
-  background: rgb(202, 202, 202);
+#cancel-btn {
+  background: #f0f0f0;
+  border-radius: 5px;
   border: none;
-  height: 8%;
-  border-radius: 2px;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#cancel-btn:hover {
+  background: #e0e0e0;
+}
+
+#submit-btn {
+  background: #1976D2;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#submit-btn:hover {
+  background: #1565c0;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

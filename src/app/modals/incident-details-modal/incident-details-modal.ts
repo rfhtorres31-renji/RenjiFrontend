@@ -15,6 +15,7 @@ export class IncidentDetailsModal implements OnChanges {
    @Output() close = new EventEmitter<void>();
 
    reportedDate?: string;
+   reportedBy?: string; 
    
    onClose(): void {
      this.close.emit();
@@ -22,8 +23,9 @@ export class IncidentDetailsModal implements OnChanges {
 
  
       ngOnChanges(changes: SimpleChanges): void {
-        if (changes['incidentDetail'] && this.incidentDetail?.ReportedDate) {
+        if (changes['incidentDetail'] && this.incidentDetail?.ReportedDate && this.incidentDetail?.ReportedBy) {
           this.reportedDate = new Date(this.incidentDetail.ReportedDate).toLocaleString();
+          this.reportedBy = this.incidentDetail?.ReportedBy;
         }
       }
 
