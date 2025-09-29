@@ -46,10 +46,12 @@
             [components]="components"
             [context]="{ componentParent: this }"
             [animateRows]="true"
-            [rowSelection]="'single'">
+            [rowSelection]="'single'"
+            (rowDoubleClicked)="onRowDoubleClicked($event)">
        </ag-grid-angular>
     </div>
   </div>
 </div>
 <app-new-incident-report-modal [show]="showModal" (close)="closeModal()" (formSubmit)="reportSubmit($event)"></app-new-incident-report-modal>
 <app-new-action-plan-modal [show]="showModal2" [data]="actionID" (close)="closeModal2()" (formSubmit)="actionSubmit($event)"></app-new-action-plan-modal>
+<app-incident-details-modal [show]="showModal3" (close)="closeModal3()" [incidentDetail]="incidentDetail"></app-incident-details-modal>

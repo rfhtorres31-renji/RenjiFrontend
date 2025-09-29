@@ -116,7 +116,7 @@
 .top-content-child {
   background: rgb(255, 255, 255);
   height: 100%;
-  width: 25%;
+  width: 30%;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex; 
@@ -131,7 +131,7 @@
   width: 30%;
   cursor: pointer;
   border-radius: 10px;
-  background: rgb(76, 91, 255);
+  background: #1976D2;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   color: white;

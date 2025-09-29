@@ -222,7 +222,7 @@ export class Actionplandashboard implements OnInit {
         });
     // ====================================================== //
 
-    // =========== API call for chart (Donut and Bar chart) ======================= //
+    // =========== API call for chart (Donut, Bar chart, Line Chart) ======================= //
        this.actionService.retrieveActionPlanChart().subscribe({
             
             next: (res)=>{
@@ -301,8 +301,7 @@ export class Actionplandashboard implements OnInit {
                   this.spinner.hide();
                   this.router.navigate(['login']);
                 }
-            }
-  
+            }  
         });
     // ====================================================== //
 

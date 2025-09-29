@@ -39,11 +39,11 @@ export class Login implements OnInit {
     
 
     onSubmit(): void {
-        
+
         if (!this.myForm.valid) { 
             return;
         }
-
+        
         this.spinner.show(); // Show the loader
         var loginRequest = this.httpService.loginUser(this.myForm.value, this.rememberMe); 
 

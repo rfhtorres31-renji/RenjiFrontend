@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
-import { NgxSpinnerService} from 'ngx-spinner';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinnerService, NgxSpinnerModule} from 'ngx-spinner';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,9 +21,9 @@ export class Register implements OnInit {
     // All logic/declarations inside the constructor will run first after the component is created
     // FormBuilder Service is injected here in Register Component to be used for form creation
     constructor(private fb: FormBuilder, 
-               private httpService: HttpService,
-               private spinner: NgxSpinnerService,
-               private router: Router) {
+                private httpService: HttpService,
+                private spinner: NgxSpinnerService,
+                private router: Router) {
     }
 
     ngOnInit(): void {

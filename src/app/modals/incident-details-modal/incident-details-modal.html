@@ -1,0 +1,32 @@
+<div class="modal-wrapper" *ngIf="show">
+   <div class="modal-content">
+      <div class="header">
+        <span>Incident Details</span>
+        <button type="button" (click)="onClose()">
+            <mat-icon style="font-size: 20px;">close</mat-icon>
+        </button>
+      </div>
+      <div class="details">
+         <div class="detail-field">
+            <span>Description</span>
+            <span id="detail-content">{{incidentDetail.Description}}</span>
+         </div>
+         <div class="detail-field">
+            <span>Location</span>
+            <span id="detail-content">{{incidentDetail.Location}}</span>
+         </div>
+         <div class="detail-field">
+            <span>Type</span>
+            <span id="detail-content">{{incidentDetail.Type}}</span>
+         </div>
+         <div class="detail-field">
+            <span>Status</span>
+            <span id="detail-content">{{incidentDetail.Status}}</span>
+         </div>
+         <div class="detail-field">
+            <span>Reported By</span>
+            <span id="detail-content">{{reportedBy}}, {{reportedDate}}</span>
+         </div>
+      </div>
+   </div>
+</div>
