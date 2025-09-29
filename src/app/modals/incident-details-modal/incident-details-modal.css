@@ -1,0 +1,99 @@
+.modal-wrapper {
+  position: fixed; /*This positions the modal-wrapper div relative to the viewport*/
+  height: 100vh;
+  width: 100vw; 
+  left: 0; /* This positions the left edge of the .modal-wrapper div to exactly align on the left edge of the viewport, provided that it its position as fixed */
+  top:0; /* This positions the left edge of the .modal-wrapper div to exactly align on the top edge of the viewport, provided that it its position as fixed */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensures that this wrapper is on top of everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  margin-top: 2%;
+  height: 85%;
+  width: 55%;
+  background: rgb(230, 230, 230);
+  padding: 1.2%;
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+  border-radius: 15px;
+}
+
+
+.header {
+ width: 100%;
+ height: 12%;
+ display: flex;
+ padding-left: 2%;
+ align-items: center;
+ /* justify-content: center; */
+ position: relative;
+ border-bottom: 1px solid rgb(205, 205, 205);
+}
+
+.header span {
+  font-size: 1.5rem;
+}
+
+.header button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 80%;
+  background: none;
+  border: none;
+  padding: 2%;
+  position: absolute;
+  left: 90%;
+}
+
+.header button:hover {
+  cursor: pointer;
+}
+
+.details {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
+
+.detail-field {
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: 17%;
+  border: 0.2px solid rgb(191, 191, 191);
+  border-radius: 5px;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-field span {
+  font-size: 1.2rem;
+  font-weight: 550;
+}
+
+#detail-content {
+  font-weight: normal;
+  font-size: 1.1rem;
+}
+
+.details .detail-field:first-child {
+  background: rgb(255, 255, 255);
+  width: 100%;
+  height: auto;
+  border: 0.2px solid rgb(191, 191, 191);
+  border-radius: 5px;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

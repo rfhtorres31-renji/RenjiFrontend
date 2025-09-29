@@ -20,7 +20,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ButtonCellRendererComponent } from '../utils/button-cell-renderer-component/button-cell-renderer-component';
 import { ActionPlan } from '../interfaces/actionPlan';
 import { NavMenu } from '../shared/nav-menu/nav-menu';
-
+import { IncidentDetailsModal } from '../modals/incident-details-modal/incident-details-modal';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 Chart.register(ArcElement, Tooltip, Legend, ChartDataLabels);
@@ -30,6 +30,7 @@ Chart.register(ArcElement, Tooltip, Legend, ChartDataLabels);
   imports: [CommonModule, 
             NewIncidentReportModal, 
             NewActionPlanModal,
+            IncidentDetailsModal,
             NgxSpinnerModule, 
             MatIconModule, 
             BaseChartDirective,
@@ -43,6 +44,7 @@ export class UserProfile implements OnInit {
   isMenuOpen: boolean = true;
   showModal: boolean = false;
   showModal2: boolean = false;
+  showModal3: boolean = false;
   userFullName: string = "";
   userId: string = "";
   chartYLabel = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
@@ -52,10 +54,12 @@ export class UserProfile implements OnInit {
   noOfResolvedReports: number = 0;
   actionID: number = 0;
   isBarChart: boolean = true;
+  incidentDetail!: any;
     
    // ======================= Incident Report Grid ================================= // 
    columnDefs = [
       { field: 'ID', headerName: 'ID', sortable: true, filter: true },
+      { field: 'Description', headerName: 'Description', sortable: true, filter: true },
       { field: 'Type', headerName: 'Type', sortable: true, filter: true },
       { field: 'Location', headerName: 'Location', sortable: true, filter: true },
       { field: 'ReportedDate', headerName: 'Reported Date', sortable: true, filter: true },
@@ -74,6 +78,12 @@ export class UserProfile implements OnInit {
     components  = {
        buttonCellRenderer: ButtonCellRendererComponent
     };
+
+    onRowDoubleClicked(event: any): void {
+        this.showModal3 = true;
+        this.incidentDetail = event.data;
+        console.log(this.incidentDetail);
+    }
 
     
  // ============================================================================== //
@@ -268,7 +278,6 @@ public barChartOptions: ChartOptions<'bar'> = {
   openModal(): void {
     this.showModal = true;
   }
-
   
   closeModal(): void {
     this.showModal = false;
@@ -277,6 +286,11 @@ public barChartOptions: ChartOptions<'bar'> = {
   closeModal2(): void {
     this.showModal2 = false;
   }
+
+  closeModal3(): void {
+    this.showModal3 = false;
+  }
+  
 
 
   reportSubmit(newReport:NewReport){

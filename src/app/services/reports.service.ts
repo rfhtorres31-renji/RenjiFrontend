@@ -18,7 +18,7 @@ export class ReportsService {
        return this.http.get(this.apiURL + "/reports/get", {headers, observe: 'response'}); 
 
    }
-
+   
 
    aggregatedReports_2(): Observable<any>{
        const headers = new HttpHeaders({
@@ -27,5 +27,6 @@ export class ReportsService {
 
       return this.http.get(this.apiURL + '/reports/summaryreports-2', {headers, observe: 'response'}); 
    }
+
 
 }
