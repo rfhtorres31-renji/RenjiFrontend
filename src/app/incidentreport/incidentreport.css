@@ -3,6 +3,7 @@
   background: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
 }
 
 .main-content {
@@ -13,6 +14,14 @@
   justify-content: center;
   align-items: center;
   transition: margin-left 0.3s ease-in-out;
+}
+
+.main-wrapper.side-menu-open .side-bar {
+  transform: translateX(0);
+}
+
+.main-wrapper.side-menu-open .main-content {
+  margin-left: 250px; /* expanded */
 }
 
 ::ng-deep .ag-header-cell-label {
@@ -43,19 +52,7 @@
 }
 
 .ag-grid {
-  height: 100%;
-}
-
-.main-wrapper.side-menu-open .side-bar {
-  transform: translateX(0);
-}
-
-.main-wrapper.side-menu-open .main-content {
-  margin-left: 250px; /* expanded */
-}
-
-.side-menu-open .side-bar {
-  transform: translateX(0); /* slide in */
+  padding: 20px;
 }
 
 /* Sidebar itself */
@@ -67,4 +64,8 @@
   top: 0;
   left: 0;
   height: 100%;
+}
+
+.side-menu-open .side-bar {
+  transform: translateX(0); /* slide in */
 }

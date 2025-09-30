@@ -14,13 +14,11 @@ import { ChartConfiguration, ChartOptions, ChartData, ChartType, Chart, ArcEleme
 import 'chartjs-adapter-date-fns';
 import { ReportsService } from '../services/reports.service';
 import { AgGridModule } from 'ag-grid-angular';
-import { ModuleRegistry, AllCommunityModule, buttonStyleQuartz } from 'ag-grid-community';
+import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 import { ViewChild } from '@angular/core';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { ButtonCellRendererComponent } from '../utils/button-cell-renderer-component/button-cell-renderer-component';
 import { ActionPlan } from '../interfaces/actionPlan';
 import { NavMenu } from '../shared/nav-menu/nav-menu';
-import { IncidentDetailsModal } from '../modals/incident-details-modal/incident-details-modal';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 Chart.register(ArcElement, Tooltip, Legend, ChartDataLabels);
@@ -30,7 +28,6 @@ Chart.register(ArcElement, Tooltip, Legend, ChartDataLabels);
   imports: [CommonModule, 
             NewIncidentReportModal, 
             NewActionPlanModal,
-            IncidentDetailsModal,
             NgxSpinnerModule, 
             MatIconModule, 
             BaseChartDirective,
@@ -44,7 +41,6 @@ export class UserProfile implements OnInit {
   isMenuOpen: boolean = true;
   showModal: boolean = false;
   showModal2: boolean = false;
-  showModal3: boolean = false;
   userFullName: string = "";
   userId: string = "";
   chartYLabel = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
@@ -54,40 +50,8 @@ export class UserProfile implements OnInit {
   noOfResolvedReports: number = 0;
   actionID: number = 0;
   isBarChart: boolean = true;
-  incidentDetail!: any;
-    
-   // ======================= Incident Report Grid ================================= // 
-   columnDefs = [
-      { field: 'ID', headerName: 'ID', sortable: true, filter: true },
-      { field: 'Description', headerName: 'Description', sortable: true, filter: true },
-      { field: 'Type', headerName: 'Type', sortable: true, filter: true },
-      { field: 'Location', headerName: 'Location', sortable: true, filter: true },
-      { field: 'ReportedDate', headerName: 'Reported Date', sortable: true, filter: true },
-      { field: 'ReportedBy', headerName: 'Reported By', sortable: true, filter: true },
-      { field: 'Status', headerName: 'Status', sortable: true, filter: true },
-      {headerName: 'Action', cellRenderer: 'buttonCellRenderer'}
-   ]
-   
-    defaultColDef = {
-      flex: 1,
-      minWidth: 100,
-      resizable: true,
-    };
+  isSideMenuOpen = false;
 
-    rowData: any[] = [];
-
-    components  = {
-       buttonCellRenderer: ButtonCellRendererComponent
-    };
-
-    onRowDoubleClicked(event: any): void {
-        this.showModal3 = true;
-        this.incidentDetail = event.data;
-        console.log(this.incidentDetail);
-    }
-
-    
- // ============================================================================== //
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective; // This gives an access to the canvas bar chart on the HTML Template
 
@@ -197,11 +161,6 @@ public barChartOptions: ChartOptions<'bar'> = {
     this.loadData();
   }
    
-  onButtonClick(row: any) {
-     console.log('Button clicked on row:', row?.ID);
-     this.actionID = row?.ID;
-     this.showModal2 = true;
-  } 
 
   onSidebarToggle(open: boolean) {
     console.log(open);
@@ -221,12 +180,13 @@ public barChartOptions: ChartOptions<'bar'> = {
         
         this.reportsService.retrieveReports().subscribe({
           next: (response) => {
-
+              
               if (response.ok){
                 this.spinner.hide();
 
-                // For Report Summary Table
-                this.rowData = response.body.details.incidentReports.data;
+                console.log(response);
+ 
+                // For KPI's
                 this.noOfOpenReports = response.body.details.incidentReports.reportCounts.open;
                 this.noOfInProgressReports = response.body.details.incidentReports.reportCounts.inProgress;
                 this.noOfResolvedReports = response.body.details.incidentReports.reportCounts.resolved;
@@ -286,10 +246,6 @@ public barChartOptions: ChartOptions<'bar'> = {
 
   closeModal2(): void {
     this.showModal2 = false;
-  }
-
-  closeModal3(): void {
-    this.showModal3 = false;
   }
   
 
