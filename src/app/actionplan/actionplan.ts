@@ -27,6 +27,7 @@ export class Actionplan implements OnInit {
    userId: string = "";
    showModal: boolean = false;
    incidentReportIDValue: string  = "";
+  isSideMenuOpen = false;
 
    // ======================= Action Plan Grid ================================= // 
       columnDefs = [

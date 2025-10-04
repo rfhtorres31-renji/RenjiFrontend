@@ -1,5 +1,5 @@
-<div class="main-wrapper">
-    <app-nav-menu [userFullName]="userFullName"></app-nav-menu>
+<div class="main-wrapper" [class.side-menu-open]="isSideMenuOpen">
+  <app-nav-menu class="sidebar" [userFullName]="userFullName" [isSideMenuOpen]="isSideMenuOpen" (sideMenuToggled)="isSideMenuOpen = $event"></app-nav-menu>
     <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
     <div class="main-content">
       <div class="ag-grid-content">

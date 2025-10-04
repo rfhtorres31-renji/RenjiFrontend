@@ -11,7 +11,12 @@
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  transition: margin-left 0.3s ease-in-out;
   gap: 1%;
+}
+
+.side-menu-open .main-content {
+  margin-left: 250px; /* 👈 push content smoothly */
 }
 
 .dashboard-1 {
@@ -28,6 +33,11 @@
   flex-direction: column;
   gap: 2%;
 }
+
+.main-wrapper.side-menu-open .side-bar {
+  transform: translateX(0);
+}
+
 
 .kpi {
   width: 100%;
@@ -92,3 +102,17 @@
   width: 100%;
 }
 
+/* Sidebar itself */
+.side-bar {
+  width: 250px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%); /* hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.side-menu-open .side-bar {
+  transform: translateX(0); /* slide in */
+}

@@ -43,12 +43,14 @@ export class NewIncidentReportModal implements OnInit, OnChanges{
   }
    
   onSubmit(event:Event) {
-    console.log(this.myForm.valid);
-    if (this.myForm.valid){
-      event.preventDefault();
-      this.formSubmit.emit(this.myForm.value as NewReport);
-      this.onClose(); // close the modal after submit
+    
+    if(this.myForm.invalid){
+      alert("Complete the details below");
     }
+
+    event.preventDefault();
+    this.formSubmit.emit(this.myForm.value as NewReport);
+    this.onClose(); // close the modal after submit
   }
 
 

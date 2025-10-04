@@ -39,6 +39,7 @@ export class Actionplandashboard implements OnInit {
   showBarChart = false;
   showLineChart = false;
   dateLabels: number[] = [];
+  isSideMenuOpen = false;
 
 
   @ViewChild('donutChart') donutChart?: BaseChartDirective;
@@ -183,6 +184,10 @@ export class Actionplandashboard implements OnInit {
               private router: Router,
               private userService: UserService,
   ) {}
+  
+  toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
+  }
 
   ngOnInit(): void {
     this.loadData();

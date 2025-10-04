@@ -14,7 +14,8 @@ export class NavMenu {
 
   @Input() userFullName: string = "";
   isMenuOpen: boolean = true;
-  isSideMenuOpen: boolean = true;
+  @Input() isSideMenuOpen = false;
+  @Output() sideMenuToggled = new EventEmitter<boolean>();
 
   constructor(private router: Router) {}
 
@@ -22,8 +23,9 @@ export class NavMenu {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  toggleSideMenu(): void {
+  toggleSideMenu() {
     this.isSideMenuOpen = !this.isSideMenuOpen;
+    this.sideMenuToggled.emit(this.isSideMenuOpen);
   }
 
   logout(): void {
@@ -33,6 +35,10 @@ export class NavMenu {
 
   goToDashboard(): void {
       this.router.navigate(['dashboard']);
+  }
+
+  goToIncidentReport(): void {
+      this.router.navigate(['incident-report']);
   }
 
   goToActionPlan(): void {
