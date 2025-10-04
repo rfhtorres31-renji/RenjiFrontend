@@ -30,7 +30,7 @@
                   <span class="kpi-value">{{noOfResolvedReports}}</span>
                </div>
        </div>
-       <button class="top-content-btn" (click)="openModal()">New Incident</button>
+       <button class="top-content-btn" (click)="openModal()">Create Incident Report</button>
     </div>
     <div class="middle-content">
       <div class="chart-1" *ngIf="isBarChart">
@@ -42,17 +42,30 @@
                [type]="'bar'">
          </canvas>
       </div>
+      <div class="leaderboard">
+         <mat-card>
+            <mat-card-title>Top Incident Reports by Users</mat-card-title>
+            <mat-list>
+               <mat-list-item *ngFor="let player of leaderboard; let i = index">
+                  <div matListItemIcon class="rank">
+                     <mat-icon>assessment</mat-icon>
+                  </div>
+                  <div matLine class="primary">{{ player.Name }}</div>
+                  <div matLine class="secondary">Report Counts: {{ player.Count }}</div>
+               </mat-list-item>
+            </mat-list>
+         </mat-card>
+      </div>
+    </div>
+    <div class="last-content">
       <div class="chart-2">
-          <h3>% No of Accident Types </h3>
+          <h3>% No of Reports per Department</h3>
            <canvas baseChart
                [data]="pieChartData"
                [options]="pieChartOptions"
                [type]="pieChartType">
          </canvas>
       </div>
-    </div>
-    <div class="last-content">
-
     </div>
   </div>
 </div>

@@ -43,15 +43,18 @@ export class NewActionPlanModal implements OnInit{
   }
 
   onSubmit(event:Event) {
-      if (this.myForm.valid){
-         event.preventDefault();
-         this.formSubmit.emit({
-           form: this.myForm.value,
+   
+   if (this.myForm.invalid){
+      alert("Complete the details below");
+   }
+
+    event.preventDefault();
+    this.formSubmit.emit({
+         form: this.myForm.value,
            incidentReportID: this.data,
-         });
-         this.onClose();
-      } 
-    }
+    });
+    this.onClose();
+  }
 
 
 }

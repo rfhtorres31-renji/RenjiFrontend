@@ -136,6 +136,11 @@ export class IncidentReport {
   
           error: (err)=>{
             console.error(err);
+            this.spinner.hide();
+            // go back to login page if unauthorize
+            if (err.status == 401) {
+              this.router.navigate(['login']);
+            }
           } 
       })
   

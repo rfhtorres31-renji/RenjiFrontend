@@ -8,6 +8,8 @@ import { NgxSpinnerService} from 'ngx-spinner';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpService } from '../services/http.service';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 import { UserService } from '../services/user.service';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartOptions, ChartData, ChartType, Chart, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -30,6 +32,8 @@ Chart.register(ArcElement, Tooltip, Legend, ChartDataLabels);
             NewActionPlanModal,
             NgxSpinnerModule, 
             MatIconModule, 
+            MatListModule,
+            MatCardModule,
             BaseChartDirective,
             NavMenu,
             AgGridModule],
@@ -51,6 +55,7 @@ export class UserProfile implements OnInit {
   actionID: number = 0;
   isBarChart: boolean = true;
   isSideMenuOpen = false;
+  leaderboard: {Name:string; Count: number}[] = []; 
 
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective; // This gives an access to the canvas bar chart on the HTML Template
@@ -150,6 +155,7 @@ public barChartOptions: ChartOptions<'bar'> = {
 
  // ====================================================================================== //
 
+
   constructor(private router: Router,
               private userService: UserService,
               private reportsService: ReportsService,
@@ -190,6 +196,9 @@ public barChartOptions: ChartOptions<'bar'> = {
                 this.noOfOpenReports = response.body.details.incidentReports.reportCounts.open;
                 this.noOfInProgressReports = response.body.details.incidentReports.reportCounts.inProgress;
                 this.noOfResolvedReports = response.body.details.incidentReports.reportCounts.resolved;
+                this.leaderboard = [...response.body.details.incidentReportsByUsers];
+
+                console.log(this.leaderboard);
 
                 // For Bar Chart and Pie Chart
                 const barChartData = response.body.details.barChart;
@@ -208,7 +217,7 @@ public barChartOptions: ChartOptions<'bar'> = {
                   labels: pieLabels,
                   datasets: [{
                     data: pieValue,
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FFCE56', '#56ff7bff', '#4f3800ff'],
+                    backgroundColor: ['#0D47A1', '#1565C0', '#1976D2', '#FFCE56', '#56ff7bff', '#4f3800ff'],
                  }]
                 }
 
@@ -266,11 +275,13 @@ public barChartOptions: ChartOptions<'bar'> = {
 
         error: (err)=>{
           console.error(err);
-          if (err.status == 401){
+          this.spinner.hide();
+          // if unauthorize
+          if (err.status == 401) {
             this.router.navigate(['login']);
           }
         } 
-    })
+    }) 
     
   }
 
