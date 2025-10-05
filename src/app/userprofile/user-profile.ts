@@ -56,6 +56,7 @@ export class UserProfile implements OnInit {
   isBarChart: boolean = true;
   isSideMenuOpen = false;
   leaderboard: {Name:string; Count: number}[] = []; 
+  topUsersByReports: {Name:string; Count: number}[] = [];
 
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective; // This gives an access to the canvas bar chart on the HTML Template
@@ -197,8 +198,10 @@ public barChartOptions: ChartOptions<'bar'> = {
                 this.noOfInProgressReports = response.body.details.incidentReports.reportCounts.inProgress;
                 this.noOfResolvedReports = response.body.details.incidentReports.reportCounts.resolved;
                 this.leaderboard = [...response.body.details.incidentReportsByUsers];
+                this.topUsersByReports = [...response.body.details.topUsersbyReports];
+                
 
-                console.log(this.leaderboard);
+                console.log(this.topUsersByReports);
 
                 // For Bar Chart and Pie Chart
                 const barChartData = response.body.details.barChart;
