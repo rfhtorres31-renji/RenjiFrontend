@@ -201,15 +201,12 @@ public barChartOptions: ChartOptions<'bar'> = {
                 this.topUsersByReports = [...response.body.details.topUsersbyReports];
                 
 
-                console.log(this.topUsersByReports);
-
                 // For Bar Chart and Pie Chart
                 const barChartData = response.body.details.barChart;
                 const pieChartData = response.body.details.pieChart;
                 
                 const pieLabels = pieChartData.map((d: any) => d.label);
                 const pieValue = pieChartData.map((d:any) => d.value);
-                console.log(pieLabels);
                 
                 if (barChartData.length > 0){
                      this.isBarChart = true;
@@ -264,7 +261,6 @@ public barChartOptions: ChartOptions<'bar'> = {
 
   reportSubmit(newReport:NewReport){
     this.spinner.show();
-    console.log(newReport);
 
     var reportSubmit = this.httpService.submitNewReport(newReport); // Observable
 
@@ -290,13 +286,11 @@ public barChartOptions: ChartOptions<'bar'> = {
 
   actionSubmit(newAction:ActionPlan){
       this.spinner.show();
-      console.log(newAction);
 
       var actionPlanSumibt = this.httpService.submitNewActionPlan(newAction); // Observable
 
       actionPlanSumibt.subscribe({
         next: (response)=>{
-            console.log(response);
             if (response.status === 200){
               this.refresh();
               this.spinner.hide();

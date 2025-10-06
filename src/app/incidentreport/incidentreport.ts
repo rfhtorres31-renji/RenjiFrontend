@@ -30,9 +30,9 @@ export class IncidentReport {
        // ======================= Incident Report Grid ================================= // 
        columnDefs = [
           { field: 'ID', headerName: 'ID', sortable: true, filter: true },
-          { field: 'Description', headerName: 'Description', sortable: true, filter: true },
+          { field: 'Description', headerName: 'Description', sortable: true, filter: true, width: 500 },
           { field: 'Type', headerName: 'Type', sortable: true, filter: true },
-          { field: 'Location', headerName: 'Location', sortable: true, filter: true },
+          { field: 'Location', headerName: 'Location', sortable: true, filter: true, width: 300 },
           { field: 'ReportedDate', headerName: 'Reported Date', sortable: true, filter: true },
           { field: 'ReportedBy', headerName: 'Reported By', sortable: true, filter: true },
           { field: 'Status', headerName: 'Status', sortable: true, filter: true },
@@ -40,9 +40,10 @@ export class IncidentReport {
        ]
        
         defaultColDef = {
-          flex: 1,
-          minWidth: 100,
+          minWidth: 150,
           resizable: true,
+          autoHeaderHeight: true,
+          cellStyle: { textAlign: 'center' }
         };
     
         rowData: any[] = [];
@@ -77,7 +78,7 @@ export class IncidentReport {
               this.userFullName = name?.toUpperCase() ?? "";
         });
         
-                this.reportsService.retrieveReports().subscribe({
+        this.reportsService.retrieveReports().subscribe({
           next: (response) => {
 
               if (response.ok){
@@ -99,7 +100,6 @@ export class IncidentReport {
    }
 
   onButtonClick(row: any) {
-     console.log('Button clicked on row:', row?.ID);
      this.actionID = row?.ID;
      this.showModal2 = true;
   } 
@@ -121,13 +121,11 @@ export class IncidentReport {
 
   actionSubmit(newAction:ActionPlan){
         this.spinner.show();
-        console.log(newAction);
   
         var actionPlanSumibt = this.httpService.submitNewActionPlan(newAction); // Observable
   
         actionPlanSumibt.subscribe({
           next: (response)=>{
-              console.log(response);
               if (response.status === 200){
                 this.refresh();
                 this.spinner.hide();

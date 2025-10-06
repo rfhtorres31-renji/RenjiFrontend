@@ -41,6 +41,7 @@ export class Login implements OnInit {
     onSubmit(): void {
 
         if (!this.myForm.valid) { 
+            alert("Please complete the details below");
             return;
         }
         

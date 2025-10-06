@@ -6,7 +6,6 @@
   justify-content: space-between; /* pushes user-menu to the right */
   padding: 0 1rem;
   position: relative;
-  z-index: 2000;
 }
 
 .side-bar {
@@ -17,7 +16,6 @@
   position: fixed; /* always fixed on the left */
   top: 0;
   left: 0;
-  /* border: 1px solid red; */
   transform: translateX(0);
   opacity: 1;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -27,7 +25,6 @@
 .side-bar-content {
  display: flex; 
  flex-direction: column;
- /* border: 1px solid blue; */
  margin-top: 20%;
  height: 60%;
  gap: 5%;
@@ -37,7 +34,6 @@
 
 .menu-item {
   height: 11%;
-  /* border: 1px solid rgb(0, 166, 255); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +41,6 @@
 
 .menu-item button {
   background: #111;
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   gap: 1vw;
