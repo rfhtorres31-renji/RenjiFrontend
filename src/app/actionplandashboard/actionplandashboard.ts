@@ -163,18 +163,52 @@ export class Actionplandashboard implements OnInit {
 
     public lineChartOptions: ChartOptions<'line'> = {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
+        title: {
+          display: true,
+          align: 'center', // ✅ keep it above chart
+          text: 'Action Plans Progress (Last 30 Days)',
+          font: {
+            size: 18,
+            weight: 'bold'
+          },
+          color: '#333',
+        },
         legend: {
           display: true,
-        },
+          position: 'right', // ✅ legend stays right side
+          align: 'center',
+          labels: {
+            boxWidth: 15,
+            padding: 15,
+            font: { size: 13 }
+          }
+        }
+      },
+      layout: {
+        padding: {
+          right: 20
+        }
       },
       scales: {
-        x: {},
+        x: {
+          title: {
+            display: true,
+            text: 'Date'
+          }
+        },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of Action Plans'
+          }
         }
       }
     };
+
+
   
 
   //=============================================================//
@@ -239,7 +273,7 @@ export class Actionplandashboard implements OnInit {
                     var donutChartArray: number[] = res.body.details.donutChart;
                     var barChartObj: {xLabel:number[], yLabel:string[]} = res.body.details.barChart;
                     var lineChartObj: {completedOverTime:any[], pendingOverTime:any[]} = res.body.details.lineChart;
-                    
+                    console.log(lineChartObj);
                     if (donutChartArray.length > 0){
                         this.showDonutChart = true; 
                         this.doughnutChartData.datasets[0].data = [...donutChartArray];
@@ -256,46 +290,61 @@ export class Actionplandashboard implements OnInit {
                         this.barChart?.update(); 
                     }
 
-                    if(lineChartObj != null){
-                        const completedOverTimeArr = lineChartObj.completedOverTime;
-                        const pendingOverTimeArr = lineChartObj.pendingOverTime;
-                       
-                        // Use Set to remove duplicates, ensure only unique values
-                        const allDates = Array.from(
-                            new Set([
-                              ...completedOverTimeArr.map(d => new Date(d.date).getDate()),
-                              ...pendingOverTimeArr.map(d => new Date(d.date).getDate())
-                            ])
-                          ).sort((a, b) => a - b);
+                    if (lineChartObj != null) {
+                      const completedOverTimeArr = lineChartObj.completedOverTime;
+                      const pendingOverTimeArr = lineChartObj.pendingOverTime;
 
-                       this.lineChartData.labels = [...allDates];
-                       this.showLineChart = true;
-                       console.log(completedOverTimeArr);
+                      // ✅ Ensure allDates is a string[] (not numbers)
+                      const allDates: string[] = Array.from(
+                        new Set([
+                          ...completedOverTimeArr.map(d => new Date(d.date).toISOString().split('T')[0]),
+                          ...pendingOverTimeArr.map(d => new Date(d.date).toISOString().split('T')[0])
+                        ])
+                      ).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
-                       const mapDataToLabelsCompleted = (dataArray: { date: any, completed: number }[], labels: number[]) => {
-                                           return labels.map(label => {
-                                               const record = dataArray.find(d => new Date(d.date).getDate() === label);
-                                               console.log(record);
-                                               return record ? record.completed : 0;
-                                           });
-                       };
+                      // ✅ Format labels nicely for display, but keep ISO date for mapping
+                      this.lineChartData.labels = allDates.map(d => {
+                        const dateObj = new Date(d);
+                        return dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+                      });
 
-                      const mapDataToLabelsPending = (dataArray: { date: any, completed: number }[], labels: number[]) => {
-                                           return labels.map(label => {
-                                               const record = dataArray.find(d => new Date(d.date).getDate() === label);
-                                               console.log(record);
-                                               return record ? record.completed : 0;
-                                           });
-                       };
-                      
+                      this.showLineChart = true;
+
+                      // ✅ Map completed data correctly
+                      const mapDataToLabelsCompleted = (
+                        dataArray: { date: string; completed: number }[],
+                        labels: string[]
+                      ) => {
+                        return labels.map(label => {
+                          // Find by ISO date (string)
+                          const record = dataArray.find(
+                            d => new Date(d.date).toISOString().split('T')[0] === label
+                          );
+                          return record ? record.completed : 0;
+                        });
+                      };
+
+                      // ✅ Map pending data correctly
+                      const mapDataToLabelsPending = (
+                        dataArray: { date: string; pending: number }[],
+                        labels: string[]
+                      ) => {
+                        return labels.map(label => {
+                          const record = dataArray.find(
+                            d => new Date(d.date).toISOString().split('T')[0] === label
+                          );
+                          return record ? record.pending : 0;
+                        });
+                      };
+
+                      // ✅ Build datasets
                       const completedData = mapDataToLabelsCompleted(completedOverTimeArr, allDates);
                       const pendingData = mapDataToLabelsPending(pendingOverTimeArr, allDates);
-                      
-                      this.lineChartData.datasets[0].data = [...completedData];
-                      this.lineChartData.datasets[1].data = [...pendingData];
 
-       
+                      this.lineChartData.datasets[0].data = completedData;
+                      this.lineChartData.datasets[1].data = pendingData;
                     }
+
 
                 }
             },

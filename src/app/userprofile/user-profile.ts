@@ -56,6 +56,7 @@ export class UserProfile implements OnInit {
   isBarChart: boolean = true;
   isSideMenuOpen = false;
   leaderboard: {Name:string; Count: number}[] = []; 
+  topUsersByReports: {Name:string; Count: number}[] = [];
 
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective; // This gives an access to the canvas bar chart on the HTML Template
@@ -197,8 +198,8 @@ public barChartOptions: ChartOptions<'bar'> = {
                 this.noOfInProgressReports = response.body.details.incidentReports.reportCounts.inProgress;
                 this.noOfResolvedReports = response.body.details.incidentReports.reportCounts.resolved;
                 this.leaderboard = [...response.body.details.incidentReportsByUsers];
-
-                console.log(this.leaderboard);
+                this.topUsersByReports = [...response.body.details.topUsersbyReports];
+                
 
                 // For Bar Chart and Pie Chart
                 const barChartData = response.body.details.barChart;
@@ -206,7 +207,6 @@ public barChartOptions: ChartOptions<'bar'> = {
                 
                 const pieLabels = pieChartData.map((d: any) => d.label);
                 const pieValue = pieChartData.map((d:any) => d.value);
-                console.log(pieLabels);
                 
                 if (barChartData.length > 0){
                      this.isBarChart = true;
@@ -261,7 +261,6 @@ public barChartOptions: ChartOptions<'bar'> = {
 
   reportSubmit(newReport:NewReport){
     this.spinner.show();
-    console.log(newReport);
 
     var reportSubmit = this.httpService.submitNewReport(newReport); // Observable
 
@@ -287,13 +286,11 @@ public barChartOptions: ChartOptions<'bar'> = {
 
   actionSubmit(newAction:ActionPlan){
       this.spinner.show();
-      console.log(newAction);
 
       var actionPlanSumibt = this.httpService.submitNewActionPlan(newAction); // Observable
 
       actionPlanSumibt.subscribe({
         next: (response)=>{
-            console.log(response);
             if (response.status === 200){
               this.refresh();
               this.spinner.hide();

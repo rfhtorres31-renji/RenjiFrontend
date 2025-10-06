@@ -211,7 +211,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.leaderboard {
+.leaderboard-1 {
  height: 100%;
  width: 30%;
  border-radius: 10px;
@@ -220,9 +220,24 @@
  padding: 5px;
 }
 
-mat-list {
+
+.leaderboard-2 {
+ height: 100%;
+ width: 100%;
+ border-radius: 10px;
+ background: white;
+ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ padding: 5px;
+}
+
+#leaderboard-content-1 {
   overflow-y: auto;
   max-height: 250px;
+}
+
+#leaderboard-content-2 {
+  overflow-y: auto;
+  max-height: 200px;
 }
 
 
@@ -296,7 +311,7 @@ mat-list-item:hover .rank
 .chart-2 {
   position: relative;
   height: 100%;
-  width: 100%; 
+  width: 50%; 
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -323,10 +338,13 @@ mat-list-item:hover .rank
 
 .last-content {
   min-height: 300px;
-  width: 50%;
+  width: 100%;
+  gap: 1%;
   border-radius: 10px;
-  background: white;
+  background: rgb(232, 232, 232);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  
 }
 
 
@@ -345,4 +363,12 @@ mat-list-item:hover .rank
 
 .ag-theme-alpine .ag-row {
   border-bottom: 1px solid #ddd;
+}
+
+.chart-3 {
+  height: 100%;
+  width: 50%;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

@@ -42,10 +42,10 @@
                [type]="'bar'">
          </canvas>
       </div>
-      <div class="leaderboard">
+      <div class="leaderboard-1">
          <mat-card>
             <mat-card-title>Top Incident Reports by Users</mat-card-title>
-            <mat-list>
+            <mat-list id="leaderboard-content-1">
                <mat-list-item *ngFor="let player of leaderboard; let i = index">
                   <div matListItemIcon class="rank">
                      <mat-icon>assessment</mat-icon>
@@ -65,6 +65,22 @@
                [options]="pieChartOptions"
                [type]="pieChartType">
          </canvas>
+      </div>
+      <div class="chart-3">
+      <div class="leaderboard-2">
+         <mat-card>
+            <mat-card-title>Top Users by Incident Reports this Month</mat-card-title>
+            <mat-list id="leaderboard-content-2">
+               <mat-list-item *ngFor="let player of topUsersByReports; let i = index">
+                  <div matListItemIcon class="rank">
+                     <mat-icon>assessment</mat-icon>
+                  </div>
+                  <div matLine class="primary">{{ player.Name }}</div>
+                  <div matLine class="secondary">Report Counts: {{ player.Count }}</div>
+               </mat-list-item>
+            </mat-list>
+         </mat-card>
+      </div>
       </div>
     </div>
   </div>
