@@ -27,7 +27,7 @@ export class Actionplan implements OnInit {
    userId: string = "";
    showModal: boolean = false;
    incidentReportIDValue: string  = "";
-  isSideMenuOpen = false;
+   isSideMenuOpen = false;
 
   
    // ======================= Action Plan Grid ================================= // 
@@ -60,13 +60,13 @@ export class Actionplan implements OnInit {
       cellStyle: { textAlign: 'center' }
     };
 
-    onGridReady(params: any) {
+   onGridReady(params: any) {
       setTimeout(() => {
         params.columnApi.autoSizeAllColumns();
       }, 0);
     }
 
-    rowData: any[] = [];
+   rowData: any[] = [];
    // ========================================================================== //
 
    constructor(private userService: UserService,
@@ -79,7 +79,7 @@ export class Actionplan implements OnInit {
      this.loadData();
    }
 
-     loadData() : void {
+   loadData() : void {
         this.spinner.show();
         
         this.userService.userName$.subscribe(name => {

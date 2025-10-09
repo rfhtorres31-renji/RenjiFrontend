@@ -7,7 +7,7 @@
          <mat-icon style="font-size: 20px;">close</mat-icon>
       </button>
     </div>
-    <form class="form-content" [formGroup]="myForm" (click)="onSubmit($event)">
+    <form class="form-content" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
       <div class="form-field-text-area">
         <label>Action Description</label>
         <textarea rows="4" cols="50" id="text-area" formControlName="actionDescription"></textarea>
