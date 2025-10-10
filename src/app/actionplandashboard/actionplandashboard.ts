@@ -121,7 +121,7 @@ export class Actionplandashboard implements OnInit {
         title: {
           display: true,
           align: 'center',
-          text: 'Action Plans Progress (Last 30 Days)',
+          text: 'No of Completed Action Plan Per Team',
           font: {
             size: 17,
             weight: 'bold',
