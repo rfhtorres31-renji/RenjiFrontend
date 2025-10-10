@@ -7,7 +7,8 @@
 }
 
 .main-content {
-  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,14 +22,14 @@
 }
 
 .dashboard-1 {
-  height: 55%;
+  height: 600px;
   width: 100%;
   display: flex;
   gap: 1%;
 }
 
 .dashboard-1-1 {
-  height: 100%;
+  height: 330px;
   width: 65%;
   display: flex; 
   flex-direction: column;
@@ -97,7 +98,7 @@
 }
 
 .dashboard-2 {
-  height: 45%;
+  height: 75%;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.4);
   width: 100%;

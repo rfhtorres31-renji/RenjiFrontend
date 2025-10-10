@@ -99,23 +99,55 @@ export class Actionplandashboard implements OnInit {
     // Chart options
     public barChartOptions: ChartOptions<'bar'> = {
       responsive: true,
-      indexAxis: 'y',   // 👈 makes it horizontal
+      indexAxis: 'y', // horizontal bar
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          right: 40, // 👈 add padding to give space for labels
+        },
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1,
+          },
+        },
+      },
       plugins: {
         legend: {
-          position: 'top'
+          position: 'top',
+        },
+        title: {
+          display: true,
+          align: 'center',
+          text: 'Action Plans Progress (Last 30 Days)',
+          font: {
+            size: 17,
+            weight: 'bold',
+          },
+          color: '#333',
         },
         tooltip: {
-          enabled: true
+          enabled: true,
         },
         datalabels: {
-          anchor: 'end',
-          align: 'right',
+          anchor: 'end', // stays at end of bar
+          align: (context) => {
+            const value = context.dataset.data[context.dataIndex] as number | null | undefined;
+            if (value == null) return 'end'; // fallback alignment
+            return value < 10 ? 'right' : 'end';
+          },
+          clamp: true, // 👈 ensures label stays inside canvas
+          clip: false, // 👈 prevents cutting off
           color: '#000',
           font: {
-            weight: 'bold'
-          }
-        }
-      }
+            weight: 'bold',
+            size: 13,
+          },
+          formatter: (value) => value.toString(), // 👈 ensures all values render
+        },
+      },
     };
 
     //first argument is cart type,second argument is the data type of the datasets, last argument is the data type of the labels
@@ -170,7 +202,7 @@ export class Actionplandashboard implements OnInit {
           align: 'center', // ✅ keep it above chart
           text: 'Action Plans Progress (Last 30 Days)',
           font: {
-            size: 18,
+            size: 17,
             weight: 'bold'
           },
           color: '#333',
@@ -281,6 +313,7 @@ export class Actionplandashboard implements OnInit {
                     }
                           
                     if (barChartObj != null){
+                        console.log(barChartObj);
                         const xLabel = barChartObj.xLabel;
                         const yLabel = barChartObj.yLabel;
                         this.showBarChart = true;
